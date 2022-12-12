@@ -11,19 +11,20 @@ class Player
   attr_accessor :name, :symbol
 
   def initialize
-    puts 'Please enter the name of the first player:'
+    @@number_of_players += 1
+    puts "Please enter the name of player number-#{@@number_of_players}:"
     @name = gets.chomp
     puts "#{@name}, please enter the symbol you want to use:"
     @symbol = gets.chomp
-    @@number_of_players += 1
   end
+
 
   def self.total_number_of_players
     @@number_of_players
   end
 
   def choose_the_position
-    puts 'Please choose the position you want to play'
+    puts "#{@name}, please choose the position you want to play"
     gets.chomp.to_i
   end
 end
@@ -97,6 +98,10 @@ Player1 = Player.new
 puts "#{Player1.name}'s symbol is #{Player1.symbol}"
 
 Player2 = Player.new
+while Player1.symbol == Player2.symbol
+  puts "#{Player2.name} can't use the same symbol as #{Player1.name}.\nPlease enter another symbol:"
+  Player2.symbol = gets.chomp
+end
 puts "#{Player2.name}'s symbol is #{Player2.symbol}"
 
 player_to_play = true
